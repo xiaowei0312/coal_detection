@@ -16,3 +16,4 @@ FORMS += mainwindow.ui \
     dialog_add.ui \
     dialog_find.ui
 RESOURCES += main.qrc
+OTHER_FILES += coal.sql

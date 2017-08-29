@@ -658,7 +658,7 @@
      <item>
       <widget class="QToolButton" name="btn_exit">
        <property name="text">
-        <string>退出</string>
+        <string>关闭</string>
        </property>
        <property name="icon">
         <iconset resource="main.qrc">

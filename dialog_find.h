@@ -17,7 +17,11 @@ protected:
     void changeEvent(QEvent *e);
 
 private:
-    Ui::FindDialog *m_ui;
+    Ui::FindDialog *ui;
+private slots:    
+    void btn_find_clicked();
+    void btn_print_clicked();
+    void btn_exit_clicked();
 };
 
 #endif // DIALOG_FIND_H

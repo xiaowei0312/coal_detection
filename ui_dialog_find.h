@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'dialog_find.ui'
 **
-** Created: Tue Aug 29 15:46:53 2017
+** Created: Tue Aug 29 16:28:09 2017
 **      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -857,7 +857,7 @@ public:
         label_42->setText(QString());
         btn_print->setText(QApplication::translate("FindDialog", "\346\211\223\345\215\260", 0, QApplication::UnicodeUTF8));
         label_43->setText(QString());
-        btn_exit->setText(QApplication::translate("FindDialog", "\351\200\200\345\207\272", 0, QApplication::UnicodeUTF8));
+        btn_exit->setText(QApplication::translate("FindDialog", "\345\205\263\351\227\255", 0, QApplication::UnicodeUTF8));
         Q_UNUSED(FindDialog);
     } // retranslateUi
 

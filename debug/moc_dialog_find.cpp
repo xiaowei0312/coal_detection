@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'dialog_find.h'
 **
-** Created: Tue Aug 29 15:39:24 2017
+** Created: Tue Aug 29 16:45:44 2017
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,16 +23,22 @@ static const uint qt_meta_data_FindDialog[] = {
        2,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       3,   12, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
+
+ // slots: signature, parameters, type, tag, flags
+      12,   11,   11,   11, 0x08,
+      31,   11,   11,   11, 0x08,
+      51,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_FindDialog[] = {
-    "FindDialog\0"
+    "FindDialog\0\0btn_find_clicked()\0"
+    "btn_print_clicked()\0btn_exit_clicked()\0"
 };
 
 const QMetaObject FindDialog::staticMetaObject = {
@@ -58,6 +64,15 @@ int FindDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QDialog::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: btn_find_clicked(); break;
+        case 1: btn_print_clicked(); break;
+        case 2: btn_exit_clicked(); break;
+        default: ;
+        }
+        _id -= 3;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE
