@@ -43,3 +43,16 @@ void MainWindow::systemExitSlot()
     }
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    switch(QMessageBox::question(this,QString::fromLocal8Bit("退出确认"),QString::fromLocal8Bit("确定要退出系统吗?"),QMessageBox::Ok | QMessageBox::Cancel,QMessageBox::Cancel))
+    {
+    case QMessageBox::Ok:
+        event->accept();
+        return;
+    default:
+        break;
+    }
+    event->ignore();
+}
+

@@ -1,0 +1,14 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\dialog_add.o
+./debug\dialog_find.o
+./debug\dbutil.o
+./debug\logutil.o
+./debug\moc_mainwindow.o
+./debug\moc_dialog_add.o
+./debug\moc_dialog_find.o
+./debug\moc_dbutil.o
+./debug\moc_logutil.o
+./debug\qrc_main.o
+);

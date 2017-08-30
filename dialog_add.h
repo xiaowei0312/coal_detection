@@ -16,14 +16,23 @@ class AddDialog : public QDialog
 public:
     AddDialog(QWidget *parent = 0);
     ~AddDialog();
+    void closeEvent ( QCloseEvent * event );
 
 private:
     Ui::AddDialog *ui;
-    int id;
     bool needSave;
+    bool isMarked;
     QList<QLineEdit*> editList1,editList2;
+    QStringList colNameList,colValList;
     bool saveData();
+    bool updateData(const QString &id);
+    bool printData(const QString &id);
+    bool saveOrUpdateData();
     void editListInit();
+    void colListInit();
+    void updateNeedSave(bool flag);
+    void addMarks();
+    void clearMarks();
 
 private slots:
     void btn_add_clicked();

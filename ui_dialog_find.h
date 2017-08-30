@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'dialog_find.ui'
 **
-** Created: Tue Aug 29 16:28:09 2017
+** Created: Wed Aug 30 18:10:24 2017
 **      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -151,9 +151,11 @@ public:
     QLineEdit *lineEdit_306;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_10;
-    QLineEdit *lineEdit;
+    QLineEdit *lineEdit_searchkey;
     QSpacerItem *horizontalSpacer;
     QToolButton *btn_find;
+    QLabel *label_11;
+    QToolButton *btn_update;
     QLabel *label_42;
     QToolButton *btn_print;
     QLabel *label_43;
@@ -745,10 +747,10 @@ public:
 
         horizontalLayout_4->addWidget(label_10);
 
-        lineEdit = new QLineEdit(FindDialog);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit_searchkey = new QLineEdit(FindDialog);
+        lineEdit_searchkey->setObjectName(QString::fromUtf8("lineEdit_searchkey"));
 
-        horizontalLayout_4->addWidget(lineEdit);
+        horizontalLayout_4->addWidget(lineEdit_searchkey);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -763,6 +765,20 @@ public:
 
         horizontalLayout_4->addWidget(btn_find);
 
+        label_11 = new QLabel(FindDialog);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+
+        horizontalLayout_4->addWidget(label_11);
+
+        btn_update = new QToolButton(FindDialog);
+        btn_update->setObjectName(QString::fromUtf8("btn_update"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/images/add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_update->setIcon(icon1);
+        btn_update->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+        horizontalLayout_4->addWidget(btn_update);
+
         label_42 = new QLabel(FindDialog);
         label_42->setObjectName(QString::fromUtf8("label_42"));
 
@@ -770,9 +786,9 @@ public:
 
         btn_print = new QToolButton(FindDialog);
         btn_print->setObjectName(QString::fromUtf8("btn_print"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/images/print.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_print->setIcon(icon1);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/images/print.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_print->setIcon(icon2);
         btn_print->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         horizontalLayout_4->addWidget(btn_print);
@@ -784,9 +800,9 @@ public:
 
         btn_exit = new QToolButton(FindDialog);
         btn_exit->setObjectName(QString::fromUtf8("btn_exit"));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/images/exit.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_exit->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/images/exit.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_exit->setIcon(icon3);
         btn_exit->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         horizontalLayout_4->addWidget(btn_exit);
@@ -802,7 +818,7 @@ public:
 
     void retranslateUi(QDialog *FindDialog)
     {
-        FindDialog->setWindowTitle(QApplication::translate("FindDialog", "\347\205\244\350\264\250\346\267\273\345\212\240", 0, QApplication::UnicodeUTF8));
+        FindDialog->setWindowTitle(QApplication::translate("FindDialog", "\347\205\244\350\264\250\346\237\245\350\257\242", 0, QApplication::UnicodeUTF8));
         groupBox_0->setTitle(QApplication::translate("FindDialog", "\345\237\272\346\234\254\346\225\260\346\215\256", 0, QApplication::UnicodeUTF8));
         groupBox_00->setTitle(QApplication::translate("FindDialog", "\345\205\250\346\260\264", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("FindDialog", "\347\232\256\351\207\215", 0, QApplication::UnicodeUTF8));
@@ -854,6 +870,8 @@ public:
         label_40->setText(QApplication::translate("FindDialog", "\347\205\244\351\207\217", 0, QApplication::UnicodeUTF8));
         label_10->setText(QApplication::translate("FindDialog", "\347\274\226\345\217\267/\346\211\213\346\234\272\345\217\267", 0, QApplication::UnicodeUTF8));
         btn_find->setText(QApplication::translate("FindDialog", "\346\237\245\346\211\276", 0, QApplication::UnicodeUTF8));
+        label_11->setText(QString());
+        btn_update->setText(QApplication::translate("FindDialog", "\346\233\264\346\226\260", 0, QApplication::UnicodeUTF8));
         label_42->setText(QString());
         btn_print->setText(QApplication::translate("FindDialog", "\346\211\223\345\215\260", 0, QApplication::UnicodeUTF8));
         label_43->setText(QString());

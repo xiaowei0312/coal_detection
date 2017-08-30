@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\dialog_add.o
+./release\dialog_find.o
+./release\dbutil.o
+./release\logutil.o
+./release\moc_mainwindow.o
+./release\moc_dialog_add.o
+./release\moc_dialog_find.o
+./release\moc_dbutil.o
+./release\moc_logutil.o
+./release\qrc_main.o
+);

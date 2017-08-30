@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'dialog_find.h'
 **
-** Created: Tue Aug 29 16:45:44 2017
+** Created: Wed Aug 30 19:27:11 2017
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_FindDialog[] = {
        2,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   12, // methods
+       6,   12, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,6 +32,9 @@ static const uint qt_meta_data_FindDialog[] = {
       12,   11,   11,   11, 0x08,
       31,   11,   11,   11, 0x08,
       51,   11,   11,   11, 0x08,
+      70,   11,   11,   11, 0x08,
+      96,   91,   11,   11, 0x08,
+     123,   91,   11,   11, 0x08,
 
        0        // eod
 };
@@ -39,6 +42,9 @@ static const uint qt_meta_data_FindDialog[] = {
 static const char qt_meta_stringdata_FindDialog[] = {
     "FindDialog\0\0btn_find_clicked()\0"
     "btn_print_clicked()\0btn_exit_clicked()\0"
+    "btn_update_clicked()\0text\0"
+    "edit_text_changed(QString)\0"
+    "searchkey_text_changed(QString)\0"
 };
 
 const QMetaObject FindDialog::staticMetaObject = {
@@ -69,9 +75,12 @@ int FindDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: btn_find_clicked(); break;
         case 1: btn_print_clicked(); break;
         case 2: btn_exit_clicked(); break;
+        case 3: btn_update_clicked(); break;
+        case 4: edit_text_changed((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 5: searchkey_text_changed((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 3;
+        _id -= 6;
     }
     return _id;
 }

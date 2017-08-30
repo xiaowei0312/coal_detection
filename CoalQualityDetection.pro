@@ -8,10 +8,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \
     dialog_add.cpp \
-    dialog_find.cpp
+    dialog_find.cpp \
+    dbutil.cpp \
+    logutil.cpp
 HEADERS += mainwindow.h \
     dialog_add.h \
-    dialog_find.h
+    dialog_find.h \
+    dbutil.h \
+    logutil.h
 FORMS += mainwindow.ui \
     dialog_add.ui \
     dialog_find.ui
