@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'dialog_add.h'
 **
-** Created: Wed Aug 30 19:22:59 2017
+** Created: Thu Aug 31 10:08:24 2017
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_AddDialog[] = {
        2,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   12, // methods
+       5,   12, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,6 +33,7 @@ static const uint qt_meta_data_AddDialog[] = {
       29,   10,   10,   10, 0x08,
       49,   10,   10,   10, 0x08,
       73,   68,   10,   10, 0x08,
+     102,  100,   10,   10, 0x08,
 
        0        // eod
 };
@@ -40,7 +41,8 @@ static const uint qt_meta_data_AddDialog[] = {
 static const char qt_meta_stringdata_AddDialog[] = {
     "AddDialog\0\0btn_add_clicked()\0"
     "btn_print_clicked()\0btn_exit_clicked()\0"
-    "text\0edit_text_changed(QString)\0"
+    "text\0edit_text_changed(QString)\0i\0"
+    "edit_text_changed_mapper(int)\0"
 };
 
 const QMetaObject AddDialog::staticMetaObject = {
@@ -72,9 +74,10 @@ int AddDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 1: btn_print_clicked(); break;
         case 2: btn_exit_clicked(); break;
         case 3: edit_text_changed((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 4: edit_text_changed_mapper((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

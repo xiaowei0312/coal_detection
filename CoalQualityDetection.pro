@@ -10,14 +10,17 @@ SOURCES += main.cpp \
     dialog_add.cpp \
     dialog_find.cpp \
     dbutil.cpp \
-    logutil.cpp
+    logutil.cpp \
+    data_dependency.cpp
 HEADERS += mainwindow.h \
     dialog_add.h \
     dialog_find.h \
     dbutil.h \
-    logutil.h
+    logutil.h \
+    data_dependency.h
 FORMS += mainwindow.ui \
     dialog_add.ui \
     dialog_find.ui
 RESOURCES += main.qrc
-OTHER_FILES += coal.sql
+OTHER_FILES += coal.sql \
+    config.xml

@@ -22,8 +22,12 @@ AddDialog::AddDialog(QWidget *parent)
     
     ui->lineEdit_301->setText(todayStr);
     
+    signalMapper = new QSignalMapper(this);
     this->editListInit();
     this->colListInit();
+    
+    //构造各个lineEdit之间依赖列表
+    this->generateDependencies();
     
     connect(ui->btn_add,SIGNAL(clicked()),this,SLOT(btn_add_clicked()));
     connect(ui->btn_print,SIGNAL(clicked()),this,SLOT(btn_print_clicked()));
@@ -33,46 +37,6 @@ AddDialog::AddDialog(QWidget *parent)
 AddDialog::~AddDialog()
 {
     delete ui;
-}
-
-void AddDialog::colListInit()
-{
-    colNameList  << "id"
-        << "data_000" << "data_001" << "data_002" << "data_010" << "data_011" << "data_012"  
-        << "data_020" << "data_021" << "data_022" << "data_030" << "data_031" << "data_032" << "data_100" 
-        << "data_101" << "data_102" << "data_103" << "data_200" << "data_201" << "data_202" << "data_203" << "data_204" << "data_205" 
-        << "data_210" << "data_211" << "data_212" << "data_213" << "data_214" << "data_220" << "data_221" << "data_222" 
-        << "data_223" << "data_224" << "data_300" << "data_301" << "data_302" << "data_303" << "data_304" << "data_305" << "data_306" ;
-}
-
-void AddDialog::editListInit()
-{
-    editList1<< ui->lineEdit_000 << ui->lineEdit_001 << ui->lineEdit_002 << ui->lineEdit_010 << ui->lineEdit_011
-             << ui->lineEdit_012 << ui->lineEdit_020 << ui->lineEdit_021 << ui->lineEdit_022
-             << ui->lineEdit_030 << ui->lineEdit_031 << ui->lineEdit_032
-             << ui->lineEdit_100 << ui->lineEdit_101 << ui->lineEdit_102 << ui->lineEdit_103
-             << ui->lineEdit_200 << ui->lineEdit_201 << ui->lineEdit_202 << ui->lineEdit_203 << ui->lineEdit_204 << ui->lineEdit_205
-             << ui->lineEdit_210 << ui->lineEdit_211 << ui->lineEdit_212 << ui->lineEdit_213 << ui->lineEdit_214
-             << ui->lineEdit_220 << ui->lineEdit_221 << ui->lineEdit_222 << ui->lineEdit_223 << ui->lineEdit_224;
-    
-    editList2 << ui->lineEdit_300<< ui->lineEdit_301<< ui->lineEdit_302 << ui->lineEdit_303
-            << ui->lineEdit_304<< ui->lineEdit_305<< ui->lineEdit_306;
-    
-    QList<QLineEdit*>::iterator it;
-    for(it=editList1.begin();it!=editList1.end();it++)
-    {
-        (*it)->setValidator(
-                new QRegExpValidator(
-                        QRegExp("^([1-9]\\d{0,15}|0)(\\.\\d{1,4})?$"),this));
-        connect(*it,SIGNAL(textChanged(const QString&)),this,SLOT(edit_text_changed(const QString&)));
-    }
-    
-    for(it=editList2.begin();it!=editList2.end();it++)
-        connect(*it,SIGNAL(textChanged(const QString&)),this,SLOT(edit_text_changed(const QString&)));
-    ui->lineEdit_303->setValidator(new QRegExpValidator(
-                        QRegExp("^1(3|4|5|7|8)\\d{9}$"),this));
-    ui->lineEdit_301->setValidator(new QRegExpValidator(
-                        QRegExp("^\\d{4}(\\-|\\/|\\.)\\d{1,2}(\\-|\\/|\\.)\\d{1,2}$"),this));
 }
 
 void AddDialog::updateNeedSave(bool flag)
@@ -92,10 +56,87 @@ void AddDialog::updateNeedSave(bool flag)
     }
 }
 
+void AddDialog::colListInit()
+{
+    colNameList  << "id"
+        << "data_000" << "data_001" << "data_002" << "data_010" << "data_011" << "data_012"  
+        << "data_020" << "data_021" << "data_022" << "data_030" << "data_031" << "data_032" << "data_100" 
+        << "data_101" << "data_102" << "data_103" << "data_200" << "data_201" << "data_202" << "data_203" << "data_204" << "data_205" 
+        << "data_210" << "data_211" << "data_212" << "data_213" << "data_214" << "data_215" << "data_220" << "data_221" << "data_222" 
+        << "data_223" << "data_224" << "data_225" 
+        << "data_300" << "data_301" << "data_302" << "data_303" << "data_304" << "data_305" << "data_306" ;
+}
+
+void AddDialog::editListInit()
+{
+    editList1<< ui->lineEdit_000 << ui->lineEdit_001 << ui->lineEdit_002 << ui->lineEdit_010 << ui->lineEdit_011
+             << ui->lineEdit_012 << ui->lineEdit_020 << ui->lineEdit_021 << ui->lineEdit_022
+             << ui->lineEdit_030 << ui->lineEdit_031 << ui->lineEdit_032
+             << ui->lineEdit_100 << ui->lineEdit_101 << ui->lineEdit_102 << ui->lineEdit_103
+             << ui->lineEdit_200 << ui->lineEdit_201 << ui->lineEdit_202 << ui->lineEdit_203 << ui->lineEdit_204 << ui->lineEdit_205
+             << ui->lineEdit_210 << ui->lineEdit_211 << ui->lineEdit_212 << ui->lineEdit_213 << ui->lineEdit_214 << ui->lineEdit_215
+             << ui->lineEdit_220 << ui->lineEdit_221 << ui->lineEdit_222 << ui->lineEdit_223 << ui->lineEdit_224 << ui->lineEdit_225;
+    
+    editList2 << ui->lineEdit_300<< ui->lineEdit_301<< ui->lineEdit_302 << ui->lineEdit_303
+            << ui->lineEdit_304<< ui->lineEdit_305<< ui->lineEdit_306;
+    
+    QList<QLineEdit*>::iterator it;
+    int i=0;
+    for(it=editList1.begin();it!=editList1.end();it++)
+    {
+        (*it)->setValidator(
+                new QRegExpValidator(
+                        QRegExp("^([1-9]\\d{0,15}|0)(\\.\\d{1,4})?$"),this));
+        connect(*it,SIGNAL(textChanged(const QString&)),signalMapper, SLOT(map()));
+        signalMapper->setMapping(*it,i++);
+    }
+    for(it=editList2.begin();it!=editList2.end();it++)
+    {
+        connect(*it,SIGNAL(textChanged(const QString&)),signalMapper, SLOT(map()));
+        signalMapper->setMapping(*it, i++);
+    }
+    
+    connect(signalMapper, SIGNAL(mapped(int)),
+             this, SLOT(edit_text_changed_mapper(int)));
+    
+    ui->lineEdit_303->setValidator(new QRegExpValidator(
+                        QRegExp("^1(3|4|5|7|8)\\d{9}$"),this));
+    ui->lineEdit_301->setValidator(new QRegExpValidator(
+                        QRegExp("^\\d{4}(\\-|\\/|\\.)\\d{1,2}(\\-|\\/|\\.)\\d{1,2}$"),this));
+}
+
+void AddDialog::edit_text_changed_mapper(int index)
+{
+    QLineEdit *pLineEdit;
+    int baseSize = editList1.size();
+    if(index < baseSize)
+        pLineEdit = editList1.at(index);
+    else
+        pLineEdit = editList2.at(index - baseSize);
+    
+    generateData(pLineEdit);
+    clearMark(pLineEdit);
+    updateNeedSave(true);
+}
+
+//已废弃被edit_text_changed_mapper替代
 void AddDialog::edit_text_changed(const QString &text)
 {
     clearMarks();
     updateNeedSave(true);
+}
+
+//生成依赖数据
+void AddDialog::generateData(QLineEdit *pLineEdit)
+{
+}
+
+//构造依赖列表
+void AddDialog::generateDependencies()
+{
+    //Fixed: 此处应该读取配置文件为最佳
+    //QList<QLineEdit *>
+    
 }
 
 void AddDialog::closeEvent ( QCloseEvent * event )
@@ -151,6 +192,11 @@ void AddDialog::btn_print_clicked()
         }
     }
     printData(id);
+}
+
+void AddDialog::clearMark(QLineEdit *pLineEdit)
+{
+    pLineEdit->setStyleSheet("QLineEdit{border:1px solid gray border-radius:1px}");  
 }
 
 void AddDialog::clearMarks()

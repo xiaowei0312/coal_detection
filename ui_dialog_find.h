@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'dialog_find.ui'
 **
-** Created: Wed Aug 30 18:10:24 2017
+** Created: Thu Aug 31 12:08:55 2017
 **      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -29,7 +29,7 @@ QT_BEGIN_NAMESPACE
 class Ui_FindDialog
 {
 public:
-    QVBoxLayout *verticalLayout_7;
+    QVBoxLayout *verticalLayout_15;
     QGroupBox *groupBox_0;
     QHBoxLayout *horizontalLayout_6;
     QGroupBox *groupBox_00;
@@ -102,30 +102,34 @@ public:
     QLineEdit *lineEdit_203;
     QLineEdit *lineEdit_204;
     QLineEdit *lineEdit_205;
-    QVBoxLayout *verticalLayout_13;
+    QVBoxLayout *verticalLayout_7;
     QLabel *label_25;
     QLabel *label_26;
     QLabel *label_27;
     QLabel *label_28;
     QLabel *label_29;
-    QVBoxLayout *verticalLayout_14;
+    QLabel *label_12;
+    QVBoxLayout *verticalLayout_8;
     QLineEdit *lineEdit_210;
     QLineEdit *lineEdit_211;
     QLineEdit *lineEdit_212;
     QLineEdit *lineEdit_213;
     QLineEdit *lineEdit_214;
-    QVBoxLayout *verticalLayout_15;
+    QLineEdit *lineEdit_215;
+    QVBoxLayout *verticalLayout_13;
     QLabel *label_31;
     QLabel *label_32;
     QLabel *label_33;
     QLabel *label_34;
     QLabel *label_35;
-    QVBoxLayout *verticalLayout_16;
+    QLabel *label_18;
+    QVBoxLayout *verticalLayout_14;
     QLineEdit *lineEdit_220;
     QLineEdit *lineEdit_221;
     QLineEdit *lineEdit_222;
     QLineEdit *lineEdit_223;
     QLineEdit *lineEdit_224;
+    QLineEdit *lineEdit_225;
     QGroupBox *groupBox_3;
     QHBoxLayout *horizontalLayout_17;
     QVBoxLayout *verticalLayout_17;
@@ -166,8 +170,8 @@ public:
         if (FindDialog->objectName().isEmpty())
             FindDialog->setObjectName(QString::fromUtf8("FindDialog"));
         FindDialog->resize(852, 544);
-        verticalLayout_7 = new QVBoxLayout(FindDialog);
-        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
+        verticalLayout_15 = new QVBoxLayout(FindDialog);
+        verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
         groupBox_0 = new QGroupBox(FindDialog);
         groupBox_0->setObjectName(QString::fromUtf8("groupBox_0"));
         horizontalLayout_6 = new QHBoxLayout(groupBox_0);
@@ -361,7 +365,7 @@ public:
         horizontalLayout_6->addWidget(groupBox_03);
 
 
-        verticalLayout_7->addWidget(groupBox_0);
+        verticalLayout_15->addWidget(groupBox_0);
 
         groupBox_1 = new QGroupBox(FindDialog);
         groupBox_1->setObjectName(QString::fromUtf8("groupBox_1"));
@@ -428,7 +432,7 @@ public:
         horizontalLayout_11->addLayout(horizontalLayout_9);
 
 
-        verticalLayout_7->addWidget(groupBox_1);
+        verticalLayout_15->addWidget(groupBox_1);
 
         groupBox_2 = new QGroupBox(FindDialog);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
@@ -504,128 +508,148 @@ public:
 
         horizontalLayout_12->addLayout(verticalLayout_12);
 
-        verticalLayout_13 = new QVBoxLayout();
-        verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
         label_25 = new QLabel(groupBox_2);
         label_25->setObjectName(QString::fromUtf8("label_25"));
 
-        verticalLayout_13->addWidget(label_25);
+        verticalLayout_7->addWidget(label_25);
 
         label_26 = new QLabel(groupBox_2);
         label_26->setObjectName(QString::fromUtf8("label_26"));
 
-        verticalLayout_13->addWidget(label_26);
+        verticalLayout_7->addWidget(label_26);
 
         label_27 = new QLabel(groupBox_2);
         label_27->setObjectName(QString::fromUtf8("label_27"));
 
-        verticalLayout_13->addWidget(label_27);
+        verticalLayout_7->addWidget(label_27);
 
         label_28 = new QLabel(groupBox_2);
         label_28->setObjectName(QString::fromUtf8("label_28"));
 
-        verticalLayout_13->addWidget(label_28);
+        verticalLayout_7->addWidget(label_28);
 
         label_29 = new QLabel(groupBox_2);
         label_29->setObjectName(QString::fromUtf8("label_29"));
 
-        verticalLayout_13->addWidget(label_29);
+        verticalLayout_7->addWidget(label_29);
+
+        label_12 = new QLabel(groupBox_2);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+
+        verticalLayout_7->addWidget(label_12);
+
+
+        horizontalLayout_12->addLayout(verticalLayout_7);
+
+        verticalLayout_8 = new QVBoxLayout();
+        verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
+        lineEdit_210 = new QLineEdit(groupBox_2);
+        lineEdit_210->setObjectName(QString::fromUtf8("lineEdit_210"));
+
+        verticalLayout_8->addWidget(lineEdit_210);
+
+        lineEdit_211 = new QLineEdit(groupBox_2);
+        lineEdit_211->setObjectName(QString::fromUtf8("lineEdit_211"));
+
+        verticalLayout_8->addWidget(lineEdit_211);
+
+        lineEdit_212 = new QLineEdit(groupBox_2);
+        lineEdit_212->setObjectName(QString::fromUtf8("lineEdit_212"));
+
+        verticalLayout_8->addWidget(lineEdit_212);
+
+        lineEdit_213 = new QLineEdit(groupBox_2);
+        lineEdit_213->setObjectName(QString::fromUtf8("lineEdit_213"));
+
+        verticalLayout_8->addWidget(lineEdit_213);
+
+        lineEdit_214 = new QLineEdit(groupBox_2);
+        lineEdit_214->setObjectName(QString::fromUtf8("lineEdit_214"));
+
+        verticalLayout_8->addWidget(lineEdit_214);
+
+        lineEdit_215 = new QLineEdit(groupBox_2);
+        lineEdit_215->setObjectName(QString::fromUtf8("lineEdit_215"));
+
+        verticalLayout_8->addWidget(lineEdit_215);
+
+
+        horizontalLayout_12->addLayout(verticalLayout_8);
+
+        verticalLayout_13 = new QVBoxLayout();
+        verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
+        label_31 = new QLabel(groupBox_2);
+        label_31->setObjectName(QString::fromUtf8("label_31"));
+
+        verticalLayout_13->addWidget(label_31);
+
+        label_32 = new QLabel(groupBox_2);
+        label_32->setObjectName(QString::fromUtf8("label_32"));
+
+        verticalLayout_13->addWidget(label_32);
+
+        label_33 = new QLabel(groupBox_2);
+        label_33->setObjectName(QString::fromUtf8("label_33"));
+
+        verticalLayout_13->addWidget(label_33);
+
+        label_34 = new QLabel(groupBox_2);
+        label_34->setObjectName(QString::fromUtf8("label_34"));
+
+        verticalLayout_13->addWidget(label_34);
+
+        label_35 = new QLabel(groupBox_2);
+        label_35->setObjectName(QString::fromUtf8("label_35"));
+
+        verticalLayout_13->addWidget(label_35);
+
+        label_18 = new QLabel(groupBox_2);
+        label_18->setObjectName(QString::fromUtf8("label_18"));
+
+        verticalLayout_13->addWidget(label_18);
 
 
         horizontalLayout_12->addLayout(verticalLayout_13);
 
         verticalLayout_14 = new QVBoxLayout();
         verticalLayout_14->setObjectName(QString::fromUtf8("verticalLayout_14"));
-        lineEdit_210 = new QLineEdit(groupBox_2);
-        lineEdit_210->setObjectName(QString::fromUtf8("lineEdit_210"));
-
-        verticalLayout_14->addWidget(lineEdit_210);
-
-        lineEdit_211 = new QLineEdit(groupBox_2);
-        lineEdit_211->setObjectName(QString::fromUtf8("lineEdit_211"));
-
-        verticalLayout_14->addWidget(lineEdit_211);
-
-        lineEdit_212 = new QLineEdit(groupBox_2);
-        lineEdit_212->setObjectName(QString::fromUtf8("lineEdit_212"));
-
-        verticalLayout_14->addWidget(lineEdit_212);
-
-        lineEdit_213 = new QLineEdit(groupBox_2);
-        lineEdit_213->setObjectName(QString::fromUtf8("lineEdit_213"));
-
-        verticalLayout_14->addWidget(lineEdit_213);
-
-        lineEdit_214 = new QLineEdit(groupBox_2);
-        lineEdit_214->setObjectName(QString::fromUtf8("lineEdit_214"));
-
-        verticalLayout_14->addWidget(lineEdit_214);
-
-
-        horizontalLayout_12->addLayout(verticalLayout_14);
-
-        verticalLayout_15 = new QVBoxLayout();
-        verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
-        label_31 = new QLabel(groupBox_2);
-        label_31->setObjectName(QString::fromUtf8("label_31"));
-
-        verticalLayout_15->addWidget(label_31);
-
-        label_32 = new QLabel(groupBox_2);
-        label_32->setObjectName(QString::fromUtf8("label_32"));
-
-        verticalLayout_15->addWidget(label_32);
-
-        label_33 = new QLabel(groupBox_2);
-        label_33->setObjectName(QString::fromUtf8("label_33"));
-
-        verticalLayout_15->addWidget(label_33);
-
-        label_34 = new QLabel(groupBox_2);
-        label_34->setObjectName(QString::fromUtf8("label_34"));
-
-        verticalLayout_15->addWidget(label_34);
-
-        label_35 = new QLabel(groupBox_2);
-        label_35->setObjectName(QString::fromUtf8("label_35"));
-
-        verticalLayout_15->addWidget(label_35);
-
-
-        horizontalLayout_12->addLayout(verticalLayout_15);
-
-        verticalLayout_16 = new QVBoxLayout();
-        verticalLayout_16->setObjectName(QString::fromUtf8("verticalLayout_16"));
         lineEdit_220 = new QLineEdit(groupBox_2);
         lineEdit_220->setObjectName(QString::fromUtf8("lineEdit_220"));
 
-        verticalLayout_16->addWidget(lineEdit_220);
+        verticalLayout_14->addWidget(lineEdit_220);
 
         lineEdit_221 = new QLineEdit(groupBox_2);
         lineEdit_221->setObjectName(QString::fromUtf8("lineEdit_221"));
 
-        verticalLayout_16->addWidget(lineEdit_221);
+        verticalLayout_14->addWidget(lineEdit_221);
 
         lineEdit_222 = new QLineEdit(groupBox_2);
         lineEdit_222->setObjectName(QString::fromUtf8("lineEdit_222"));
 
-        verticalLayout_16->addWidget(lineEdit_222);
+        verticalLayout_14->addWidget(lineEdit_222);
 
         lineEdit_223 = new QLineEdit(groupBox_2);
         lineEdit_223->setObjectName(QString::fromUtf8("lineEdit_223"));
 
-        verticalLayout_16->addWidget(lineEdit_223);
+        verticalLayout_14->addWidget(lineEdit_223);
 
         lineEdit_224 = new QLineEdit(groupBox_2);
         lineEdit_224->setObjectName(QString::fromUtf8("lineEdit_224"));
 
-        verticalLayout_16->addWidget(lineEdit_224);
+        verticalLayout_14->addWidget(lineEdit_224);
+
+        lineEdit_225 = new QLineEdit(groupBox_2);
+        lineEdit_225->setObjectName(QString::fromUtf8("lineEdit_225"));
+
+        verticalLayout_14->addWidget(lineEdit_225);
 
 
-        horizontalLayout_12->addLayout(verticalLayout_16);
+        horizontalLayout_12->addLayout(verticalLayout_14);
 
 
-        verticalLayout_7->addWidget(groupBox_2);
+        verticalLayout_15->addWidget(groupBox_2);
 
         groupBox_3 = new QGroupBox(FindDialog);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
@@ -738,7 +762,7 @@ public:
         horizontalLayout_17->addLayout(verticalLayout_21);
 
 
-        verticalLayout_7->addWidget(groupBox_3);
+        verticalLayout_15->addWidget(groupBox_3);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
@@ -808,7 +832,7 @@ public:
         horizontalLayout_4->addWidget(btn_exit);
 
 
-        verticalLayout_7->addLayout(horizontalLayout_4);
+        verticalLayout_15->addLayout(horizontalLayout_4);
 
 
         retranslateUi(FindDialog);
@@ -853,11 +877,13 @@ public:
         label_27->setText(QApplication::translate("FindDialog", "\345\271\262\345\237\272\346\214\245\345\217\221\345\210\206", 0, QApplication::UnicodeUTF8));
         label_28->setText(QApplication::translate("FindDialog", "\347\251\272\346\260\224\345\271\262\347\207\245\345\237\272\351\253\230\344\275\215\345\217\221\347\203\255", 0, QApplication::UnicodeUTF8));
         label_29->setText(QApplication::translate("FindDialog", "\345\233\272\345\256\232\347\242\263", 0, QApplication::UnicodeUTF8));
+        label_12->setText(QApplication::translate("FindDialog", "\346\260\242", 0, QApplication::UnicodeUTF8));
         label_31->setText(QApplication::translate("FindDialog", "\346\224\266\345\210\260\345\237\272\347\201\260\345\210\206", 0, QApplication::UnicodeUTF8));
         label_32->setText(QApplication::translate("FindDialog", "\346\224\266\345\210\260\345\237\272\346\214\245\345\217\221\345\210\206", 0, QApplication::UnicodeUTF8));
         label_33->setText(QApplication::translate("FindDialog", "\345\271\262\347\207\245\346\227\240\347\202\255\345\237\272\346\214\245\345\217\221", 0, QApplication::UnicodeUTF8));
         label_34->setText(QApplication::translate("FindDialog", "\347\251\272\346\260\224\345\271\262\347\207\245\345\237\272\345\205\250", 0, QApplication::UnicodeUTF8));
         label_35->setText(QApplication::translate("FindDialog", "\347\204\246\346\270\243\347\211\271\345\276\201", 0, QApplication::UnicodeUTF8));
+        label_18->setText(QApplication::translate("FindDialog", "\345\233\236\346\224\266", 0, QApplication::UnicodeUTF8));
         groupBox_3->setTitle(QApplication::translate("FindDialog", "\345\205\266\344\273\226\344\277\241\346\201\257", 0, QApplication::UnicodeUTF8));
         label_30->setText(QApplication::translate("FindDialog", "\347\274\226\345\217\267", 0, QApplication::UnicodeUTF8));
         label_36->setText(QApplication::translate("FindDialog", "\351\207\207\346\240\267\346\227\245\346\234\237", 0, QApplication::UnicodeUTF8));

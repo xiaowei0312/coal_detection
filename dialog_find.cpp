@@ -16,6 +16,7 @@ FindDialog::FindDialog(QWidget *parent) :
     ui->btn_find->setEnabled(false);
     ui->btn_print->setEnabled(false);
     
+    signalMapper = new QSignalMapper(this);
     this->editListInit();
     this->colListInit();
     
@@ -38,8 +39,9 @@ void FindDialog::colListInit()
         << "data_000" << "data_001" << "data_002" << "data_010" << "data_011" << "data_012"  
         << "data_020" << "data_021" << "data_022" << "data_030" << "data_031" << "data_032" << "data_100" 
         << "data_101" << "data_102" << "data_103" << "data_200" << "data_201" << "data_202" << "data_203" << "data_204" << "data_205" 
-        << "data_210" << "data_211" << "data_212" << "data_213" << "data_214" << "data_220" << "data_221" << "data_222" 
-        << "data_223" << "data_224" << "data_300" << "data_301" << "data_302" << "data_303" << "data_304" << "data_305" << "data_306" ;
+        << "data_210" << "data_211" << "data_212" << "data_213" << "data_214" << "data_215" << "data_220" << "data_221" << "data_222" 
+        << "data_223" << "data_224" << "data_225" 
+        << "data_300" << "data_301" << "data_302" << "data_303" << "data_304" << "data_305" << "data_306" ;
 }
 
 void FindDialog::editListInit()
@@ -49,27 +51,34 @@ void FindDialog::editListInit()
              << ui->lineEdit_030 << ui->lineEdit_031 << ui->lineEdit_032
              << ui->lineEdit_100 << ui->lineEdit_101 << ui->lineEdit_102 << ui->lineEdit_103
              << ui->lineEdit_200 << ui->lineEdit_201 << ui->lineEdit_202 << ui->lineEdit_203 << ui->lineEdit_204 << ui->lineEdit_205
-             << ui->lineEdit_210 << ui->lineEdit_211 << ui->lineEdit_212 << ui->lineEdit_213 << ui->lineEdit_214
-             << ui->lineEdit_220 << ui->lineEdit_221 << ui->lineEdit_222 << ui->lineEdit_223 << ui->lineEdit_224;
+             << ui->lineEdit_210 << ui->lineEdit_211 << ui->lineEdit_212 << ui->lineEdit_213 << ui->lineEdit_214 << ui->lineEdit_215
+             << ui->lineEdit_220 << ui->lineEdit_221 << ui->lineEdit_222 << ui->lineEdit_223 << ui->lineEdit_224 << ui->lineEdit_225;
     
     editList2 << ui->lineEdit_300<< ui->lineEdit_301<< ui->lineEdit_302 << ui->lineEdit_303
             << ui->lineEdit_304<< ui->lineEdit_305<< ui->lineEdit_306;
     
     QList<QLineEdit*>::iterator it;
+    int i=0;
     for(it=editList1.begin();it!=editList1.end();it++)
     {
         (*it)->setEnabled(false);
         (*it)->setValidator(
                 new QRegExpValidator(
                         QRegExp("^([1-9]\\d{0,15}|0)(\\.\\d{1,4})?$"),this));
-        connect(*it,SIGNAL(textChanged(const QString&)),this,SLOT(edit_text_changed(const QString&)));
+        connect(*it,SIGNAL(textChanged(const QString&)),signalMapper, SLOT(map()));
+        signalMapper->setMapping(*it,i++);
     }
     
     for(it=editList2.begin();it!=editList2.end();it++)
     {
         (*it)->setEnabled(false);
-        connect(*it,SIGNAL(textChanged(const QString&)),this,SLOT(edit_text_changed(const QString&)));
+        connect(*it,SIGNAL(textChanged(const QString&)),signalMapper, SLOT(map()));
+        signalMapper->setMapping(*it, i++);
     }
+    
+    connect(signalMapper, SIGNAL(mapped(int)),
+             this, SLOT(edit_text_changed_mapper(int)));
+    
     ui->lineEdit_303->setValidator(new QRegExpValidator(
                         QRegExp("^1(3|4|5|7|8)\\d{9}$"),this));
     ui->lineEdit_301->setValidator(new QRegExpValidator(
@@ -91,6 +100,11 @@ void FindDialog::updateNeedSave(bool flag)
         this->setWindowTitle(this->windowTitle().replace("(*)",""));
         ui->btn_update->setEnabled(false);
     }
+}
+
+void FindDialog::clearMark(QLineEdit *pLineEdit)
+{
+    pLineEdit->setStyleSheet("QLineEdit{border:1px solid gray border-radius:1px}");  
 }
 
 void FindDialog::clearMarks()
@@ -127,10 +141,24 @@ void FindDialog::addMarks()
     
     isMarked = true;
 }
+
+void FindDialog::edit_text_changed_mapper(int index)
+{
+    QLineEdit *pLineEdit;
+    int baseSize = editList1.size();
+    if(index < baseSize)
+        pLineEdit = editList1.at(index);
+    else
+        pLineEdit = editList2.at(index - baseSize);
+    
+    clearMark(pLineEdit);
+    updateNeedSave(true);
+}
+
 void FindDialog::edit_text_changed(const QString &text)
 {
-    updateNeedSave(true);
     clearMarks();
+    updateNeedSave(true);
 }
 
 void FindDialog::searchkey_text_changed(const QString &text)

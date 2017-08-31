@@ -82,7 +82,7 @@ bool DBUtil::insert(const QString &table, QStringList &names, QStringList &value
     }
     sql = sql + QString(")");
  
-    qDebug() << sql;
+    //qDebug() << sql;
     if (query.exec(sql))
     {
         LogUtil::getInstance()->logWrite(LogUtil::NORMAL,sql);
@@ -119,7 +119,7 @@ bool DBUtil::update(const QString &table, QStringList &names, QStringList &value
  
     sql = sql + QString(" where ") + expression;
     
-    qDebug() << sql;
+    //qDebug() << sql;
     if (query.exec(sql))
     {
         LogUtil::getInstance()->logWrite(LogUtil::NORMAL,sql);

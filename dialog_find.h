@@ -3,6 +3,7 @@
 
 #include <QtGui/QDialog>
 #include <QLineEdit>
+#include <QSignalMapper>
 
 namespace Ui {
     class FindDialog;
@@ -20,11 +21,13 @@ protected:
 
 private:
     Ui::FindDialog *ui;
-    
+    QSignalMapper *signalMapper;
     bool needSave;
     bool isMarked;
     QList<QLineEdit*> editList1,editList2;
     QStringList colNameList,colValList;
+    
+private:
     bool saveData();
     bool updateData(const QString &id);
      bool printData(const QString &id);
@@ -36,6 +39,7 @@ private:
     
     void addMarks();
     void clearMarks();
+    void clearMark(QLineEdit *pLinEdit);
     
 private slots:    
     void btn_find_clicked();
@@ -44,6 +48,7 @@ private slots:
     void btn_update_clicked();
     
     void edit_text_changed(const QString &text);
+    void edit_text_changed_mapper(int i);
     void searchkey_text_changed(const QString &text);
 };
 

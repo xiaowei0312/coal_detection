@@ -4,6 +4,8 @@
 #include "mainwindow.h"
 #include "logutil.h"
 #include "dbutil.h"
+#include <QDebug>
+//#include "data_dependency.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +21,10 @@ int main(int argc, char *argv[])
     w.move((QApplication::desktop()->width() - w.width())/2,
            (QApplication::desktop()->height() - w.height())/2);
     w.show();
+    
+//    DataDependency dep;
+//    dep.formula = "11.3 * (1.23 + ((2 + 3 ) - ( 2 + 2))) / 3";
+//    qDebug() << dep.execFormula();
     
     return a.exec();
 }

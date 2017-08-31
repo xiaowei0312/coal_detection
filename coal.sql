@@ -33,12 +33,14 @@ create table t_coal_detection(
     data_212 varchar(20),
     data_213 varchar(20),
     data_214 varchar(20),
+    data_215 varchar(20),
     
     data_220 varchar(20),
     data_221 varchar(20),
     data_222 varchar(20),
     data_223 varchar(20),
     data_224 varchar(20),
+    data_225 varchar(20),
     
     data_300 varchar(20),
     data_301 varchar(20),

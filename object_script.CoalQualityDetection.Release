@@ -5,6 +5,7 @@ INPUT(
 ./release\dialog_find.o
 ./release\dbutil.o
 ./release\logutil.o
+./release\data_dependency.o
 ./release\moc_mainwindow.o
 ./release\moc_dialog_add.o
 ./release\moc_dialog_find.o
