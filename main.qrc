@@ -6,4 +6,7 @@
         <file>images/print.png</file>
         <file>images/print1.png</file>
     </qresource>
+    <qresource prefix="/new/config" >
+        <file>config/config.xml</file>
+    </qresource>
 </RCC>

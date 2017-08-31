@@ -114,12 +114,11 @@
 			<node alias="Vad">18</node>
 			<node alias="Aad">17</node>
 			<node alias="Mad">22</node>
-			<node alias="Crc">31</node>
+			<node alias="Crc">32</node>
 			<node alias="Mt">16</node>
 		</depList>
 		<formula>
-			((35860 - 73.7 * n1 - 395.7 * n2 - 702 * n3 + 173.6 * n4 + 23 * n3 )
-				* (100 - n5) / (100 - n3) - 23 * n5) / 4.1816
+			((35860 - 73.7 * n1 - 395.7 * n2 - 702 * n3 + 173.6 * n4 + 23 * n3 ) * (100 - n5) / (100 - n3) - 23 * n5) / 4.1816
 		</formula>
 	</item>
 
@@ -130,7 +129,7 @@
 			<node alias="Vad">18</node>
 			<node alias="Aad">17</node>
 			<node alias="Mad">22</node>
-			<node alias="Crc">31</node>
+			<node alias="Crc">32</node>
 		</depList>
 		<formula>
 			(36255 - 54.3 * n1 - 395.7 * n2 - 679 * n3 + 173.6 * n4) / 4.1816
@@ -141,7 +140,7 @@
 	<item>
 		<target><node alias="St.d">20</node></target>
 		<depList>
-			<node alias="St.ad">30</node>
+			<node alias="St.ad">31</node>
 			<node alias="Mad">22</node>
 		</depList>
 		<formula>

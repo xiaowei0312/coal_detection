@@ -5,20 +5,28 @@
 #include <QList>
 #include "dbutil.h"
 #include "logutil.h"
+#include <QDomDocument>
 
 FindDialog::FindDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::FindDialog)
 {
     ui->setupUi(this);
-    
+    isMarked = false;
     updateNeedSave(false);
+    
     ui->btn_find->setEnabled(false);
     ui->btn_print->setEnabled(false);
     
     signalMapper = new QSignalMapper(this);
     this->editListInit();
     this->colListInit();
+    
+    //构造各个lineEdit之间依赖列表
+    this->generateDependencies();
+    
+    //添加foucsin事件过滤
+    this->addEventFilter();
     
     connect(ui->btn_find,SIGNAL(clicked()),this,SLOT(btn_find_clicked()));
     connect(ui->btn_update,SIGNAL(clicked()),this,SLOT(btn_update_clicked()));
@@ -85,6 +93,93 @@ void FindDialog::editListInit()
                         QRegExp("^\\d{4}(\\-|\\/|\\.)\\d{1,2}(\\-|\\/|\\.)\\d{1,2}$"),this));
 }
 
+//生成依赖数据
+void FindDialog::generateData(QLineEdit *pLineEdit)
+{
+    for(int i=0;i<dataDepList.size();i++)
+    {
+        DataDependency *pDataObj = dataDepList.value(i); 
+        for(int j=0;j<pDataObj->depList.size();j++)
+        {
+            if(pDataObj->depList.value(j) == pLineEdit)
+            {
+                if(!pDataObj->depHasEmptyElement())
+                {
+                    double d = pDataObj->execFormula();
+                    if(pDataObj->error)
+                    {
+                        pDataObj->pTarget->setText("error");
+                        addMark(pDataObj->pTarget);
+                    }
+                    else
+                    {
+                        pDataObj->pTarget->setText(QString::number(d,'f',4));
+                        clearMark(pDataObj->pTarget);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
+
+//构造依赖列表
+int FindDialog::generateDependencies()
+{
+    //Fixed: 此处应该读取配置文件为最佳
+    //dataDepList
+    QDomDocument doc;  
+    QFile file("D:/QtSpace/CoalQualityDetection/config/config.xml");  
+    QString error = "";  
+    int row = 0, column = 0;  
+    if (!file.open(QIODevice::ReadOnly)) return -2;  
+  
+    if(!doc.setContent(&file, false, &error, &row, &column)){  
+        qDebug() << "parse file failed:" << row << "---" << column <<":" <<error;  
+        file.close();  
+        return -1;  
+    }  
+    file.close();  
+    
+    QDomElement root = doc.documentElement(); 
+    if(root.tagName() != "datalist")
+        return -3;
+    QDomNode node = root.firstChild();  
+    while(!node.isNull()) {  //item loop
+        DataDependency *dataDep = new DataDependency;
+        QDomElement element = node.toElement(); // try to convert the node to an element.  
+        if(element.tagName() == "item")
+        {    
+            QDomNode tmpNode = element.firstChild(); 
+            while(!tmpNode.isNull()){
+                QDomElement tmpElement = tmpNode.toElement();
+                if(tmpElement.tagName()=="target")
+                    dataDep->pTarget = editList1.value(tmpElement.firstChild().toElement().text().toInt());
+                else if(tmpElement.tagName()=="depList")
+                {
+                    QDomNode tNode = tmpElement.firstChild();
+                    while(!tNode.isNull()){
+                        dataDep->depList.push_back(editList1.value(tNode.toElement().text().toInt()));
+                        tNode = tNode.nextSibling();
+                    }
+                }
+                else if(tmpElement.tagName()=="formula")
+                    dataDep->formula = tmpElement.text().trimmed();
+                tmpNode = tmpNode.nextSibling();
+            }
+            dataDepList.push_back(dataDep);
+        }
+        node = node.nextSibling();  
+    }  
+    return 0;  
+}
+
+void FindDialog::addEventFilter()
+{
+    for(int i=0;i<dataDepList.size();i++)
+        dataDepList.value(i)->pTarget->installEventFilter(this);
+}
+
 void FindDialog::updateNeedSave(bool flag)
 {
     this->needSave = flag;
@@ -102,6 +197,27 @@ void FindDialog::updateNeedSave(bool flag)
     }
 }
 
+bool FindDialog::eventFilter(QObject *watched, QEvent *event)
+{
+    if(event->type()==QEvent::FocusIn)
+    {    
+        for(int i=0;i<dataDepList.size();i++)
+        {
+            DataDependency *pData = dataDepList.value(i);
+            if(watched == pData->pTarget)
+            {
+                if(pData->pTarget->text().trimmed().isEmpty())
+                {
+                    isMarked = true;
+                    clearMarks();
+                    pData->markEmptyDepElement();
+                }
+            }
+        }
+    }
+    return QWidget::eventFilter(watched,event);     // 最后将事件交给上层对话框
+}
+
 void FindDialog::clearMark(QLineEdit *pLineEdit)
 {
     pLineEdit->setStyleSheet("QLineEdit{border:1px solid gray border-radius:1px}");  
@@ -117,6 +233,12 @@ void FindDialog::clearMarks()
         (*it)->setStyleSheet("QLineEdit{border:1px solid gray border-radius:1px}");  
     for(it = editList2.begin();it!=editList2.end();it++)
         (*it)->setStyleSheet("QLineEdit{border:1px solid gray border-radius:1px}"); 
+}
+
+void FindDialog::addMark(QLineEdit *pLineEdit)
+{
+    pLineEdit->setStyleSheet("QLineEdit{border:1px solid red }");  
+    isMarked = true;
 }
 
 void FindDialog::addMarks()
@@ -153,6 +275,7 @@ void FindDialog::edit_text_changed_mapper(int index)
     
     clearMark(pLineEdit);
     updateNeedSave(true);
+    generateData(pLineEdit);
 }
 
 void FindDialog::edit_text_changed(const QString &text)

@@ -2,7 +2,8 @@
 # Project created by QtCreator 2017-08-29T10:57:34
 # -------------------------------------------------
 QT += network \
-    sql
+    sql \
+    xml
 TARGET = CoalQualityDetection
 TEMPLATE = app
 SOURCES += main.cpp \
@@ -22,5 +23,4 @@ FORMS += mainwindow.ui \
     dialog_add.ui \
     dialog_find.ui
 RESOURCES += main.qrc
-OTHER_FILES += coal.sql \
-    config.xml
+OTHER_FILES += coal.sql

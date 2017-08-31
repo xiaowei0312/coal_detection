@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QLineEdit>
 #include <QSignalMapper>
+#include "data_dependency.h"
 
 namespace Ui
 {
@@ -26,7 +27,7 @@ private:
     bool isMarked;
     QList<QLineEdit*> editList1,editList2;
     QStringList colNameList,colValList;
-    QList< QList<QLineEdit *> > dependencyList;
+    QList<DataDependency*> dataDepList;
 
 private:
     bool saveData();
@@ -37,10 +38,12 @@ private:
     void colListInit();
     void updateNeedSave(bool flag);
     void addMarks();
+    void addMark(QLineEdit *pLineEdit);
     void clearMarks();
     void clearMark(QLineEdit *pLinEdit);
     void generateData(QLineEdit *pLinEdit);
-    void generateDependencies();
+    int generateDependencies();
+    void addEventFilter();
 
 private slots:
     void btn_add_clicked();
@@ -48,5 +51,7 @@ private slots:
     void btn_exit_clicked();
     void edit_text_changed(const QString &text);
     void edit_text_changed_mapper(int i);
+public slots:
+     bool eventFilter(QObject *,QEvent *); 
 };
 #endif // DIALOG_ADD_H

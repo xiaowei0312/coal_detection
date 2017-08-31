@@ -4,7 +4,7 @@
 
 DataDependency::DataDependency()
 {
-    
+    error = 0;
 }
 
 bool DataDependency::depHasEmptyElement()
@@ -17,11 +17,18 @@ bool DataDependency::depHasEmptyElement()
 
 void DataDependency::markEmptyDepElement()
 {
-       
+    for(int i=0;i<depList.size();i++)
+    {
+        if(depList.value(i)->text().trimmed().isEmpty())
+        {
+            depList.value(i)->setStyleSheet("QLineEdit{border:1px solid green}");
+        }
+    }
 }
 
 double DataDependency::__execFormula(char *szFormula)
 {
+    error = 0;
     QStack<double> stack1;
     QStack<char> stack2;
     
@@ -68,6 +75,11 @@ double DataDependency::__execFormula(char *szFormula)
                         stack2.pop();
                         break;
                     case '/':
+                        if(dTmp == 0)
+                        {
+                            error = 1;
+                            return 0;
+                        }
                         dTmp = stack1.pop() / dTmp;
                         stack2.pop();
                         break;
@@ -118,8 +130,6 @@ double DataDependency::__execFormula(char *szFormula)
         }
     }
     
-    qDebug() << stack1;
-    qDebug() << stack2;
     while(!stack2.empty())
     {
         stack1.push(stack1.pop() + stack1.pop());

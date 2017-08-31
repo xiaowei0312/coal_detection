@@ -4,6 +4,7 @@
 #include <QtGui/QDialog>
 #include <QLineEdit>
 #include <QSignalMapper>
+#include <data_dependency.h>
 
 namespace Ui {
     class FindDialog;
@@ -26,6 +27,7 @@ private:
     bool isMarked;
     QList<QLineEdit*> editList1,editList2;
     QStringList colNameList,colValList;
+    QList<DataDependency*> dataDepList;
     
 private:
     bool saveData();
@@ -40,6 +42,10 @@ private:
     void addMarks();
     void clearMarks();
     void clearMark(QLineEdit *pLinEdit);
+    void addMark(QLineEdit *pLineEdit);
+    void generateData(QLineEdit *pLinEdit);
+    int generateDependencies();
+    void addEventFilter();
     
 private slots:    
     void btn_find_clicked();
@@ -50,6 +56,8 @@ private slots:
     void edit_text_changed(const QString &text);
     void edit_text_changed_mapper(int i);
     void searchkey_text_changed(const QString &text);
+public slots:
+    bool eventFilter(QObject *,QEvent *); 
 };
 
 #endif // DIALOG_FIND_H

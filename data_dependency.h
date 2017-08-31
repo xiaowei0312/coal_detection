@@ -14,6 +14,7 @@ public:
     QLineEdit *pTarget;
     QList<QLineEdit *> depList;
     QString formula;
+    int error;
 public:
     DataDependency();
     bool depHasEmptyElement();
