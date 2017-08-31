@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "dialog_add.h"
 #include "dialog_find.h"
+#include "dialog_search.h"
 #include <QDebug>
 #include <QtGui>
 
@@ -27,8 +28,10 @@ void MainWindow::addDetectionSlot()
 
 void MainWindow::findDetectionSlot()
 {
-    FindDialog *pFindDialog = new FindDialog(this);
-    pFindDialog->show();
+//    FindDialog *pFindDialog = new FindDialog(this);
+//    pFindDialog->show();
+    SearchDialog *pSearchDialog = new SearchDialog();
+     pSearchDialog->show();
 }
 
 void MainWindow::systemExitSlot()

@@ -126,10 +126,9 @@ void FindDialog::generateData(QLineEdit *pLineEdit)
 //构造依赖列表
 int FindDialog::generateDependencies()
 {
-    //Fixed: 此处应该读取配置文件为最佳
     //dataDepList
     QDomDocument doc;  
-    QFile file("D:/QtSpace/CoalQualityDetection/config/config.xml");  
+    QFile file(":/config/config.xml");
     QString error = "";  
     int row = 0, column = 0;  
     if (!file.open(QIODevice::ReadOnly)) return -2;  

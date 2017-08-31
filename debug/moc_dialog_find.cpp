@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'dialog_find.h'
 **
-** Created: Thu Aug 31 19:00:46 2017
+** Created: Thu Aug 31 22:15:43 2017
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.3)
 **
 ** WARNING! All changes made in this file will be lost!

@@ -163,6 +163,7 @@ bool DBUtil::select(const QString &table,QStringList &names,QString &expression,
     
     sql += (" from " + table + QString(" where ") + expression);
     
+    qDebug() << sql;
     if (!query.exec(sql))
         return false;
  

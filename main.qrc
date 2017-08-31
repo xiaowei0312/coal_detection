@@ -5,8 +5,10 @@
         <file>images/exit.png</file>
         <file>images/print.png</file>
         <file>images/print1.png</file>
-    </qresource>
-    <qresource prefix="/new/config" >
+        <file>images/pagedown.png</file>
+        <file>images/pagehead.png</file>
+        <file>images/pagetail.png</file>
+        <file>images/pageup.png</file>
         <file>config/config.xml</file>
     </qresource>
 </RCC>

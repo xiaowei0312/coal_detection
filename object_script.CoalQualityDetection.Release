@@ -6,10 +6,12 @@ INPUT(
 ./release\dbutil.o
 ./release\logutil.o
 ./release\data_dependency.o
+./release\dialog_search.o
 ./release\moc_mainwindow.o
 ./release\moc_dialog_add.o
 ./release\moc_dialog_find.o
 ./release\moc_dbutil.o
 ./release\moc_logutil.o
+./release\moc_dialog_search.o
 ./release\qrc_main.o
 );

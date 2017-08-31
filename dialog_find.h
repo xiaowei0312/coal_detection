@@ -16,7 +16,7 @@ public:
     FindDialog(QWidget *parent = 0);
     ~FindDialog();
     void closeEvent ( QCloseEvent * event );
-
+    void showDataById(const QString &id);
 protected:
     void changeEvent(QEvent *e);
 
@@ -37,7 +37,7 @@ private:
     void editListInit();
     void colListInit();
     void updateNeedSave(bool flag);
-    void showDataById(const QString &id);
+   
     
     void addMarks();
     void clearMarks();
