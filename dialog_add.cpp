@@ -6,6 +6,8 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QDomNode>
+#include <QTextDocument>
+#include <QPrinter>
 #include "dbutil.h"
 #include "logutil.h"
 
@@ -71,6 +73,16 @@ void AddDialog::colListInit()
         << "data_210" << "data_211" << "data_212" << "data_213" << "data_214" << "data_215" << "data_220" << "data_221" << "data_222" 
         << "data_223" << "data_224" << "data_225" 
         << "data_300" << "data_301" << "data_302" << "data_303" << "data_304" << "data_305" << "data_306" ;
+    
+    colNameList_print  
+            << "id" << "data_303" << "data_301"  << "data_304" 
+            << "add_time" << "data_302" << "data_305" << "data_306" 
+            << "data_200" << "data_210" << "data_220" 
+            << "data_201" << "data_211" << "data_221" 
+            << "data_202" << "data_212" << "data_222" 
+            << "data_203" << "data_213" << "data_223" 
+            << "data_204" << "data_214" << "data_224" 
+            << "data_205" << "data_215" << "data_225";
 }
 
 void AddDialog::editListInit()
@@ -407,9 +419,96 @@ bool AddDialog::saveData()
 }
 
 bool AddDialog::printData(const QString &id)
-{
-    qDebug() << "printData";
+{   
+    QPrinter printer;
+    // 创建打印预览对话框
+    QPrintPreviewDialog preview(&printer, this);
+    // 当要生成预览页面时，发射paintRequested()信号
+    connect(&preview, SIGNAL(paintRequested(QPrinter*)),
+                  this,SLOT(printPreview(QPrinter*)));
+    preview.exec();
+    
     return true;
+}
+
+
+void AddDialog::printPreview(QPrinter *printer)
+{
+    QString id = ui->lineEdit_300->text().trimmed();    //btn_print
+    QList<QStringList> values;
+    QString expressions = QString("id = %1 and is_deleted = 0").arg(id);
+    
+    //从数据库中加载数据
+    if(!DBUtil::getInstance()->select("t_coal_detection",colNameList_print,expressions,values))
+    {
+        QMessageBox:: critical(this,QString::fromLocal8Bit("查找失败"),
+            QString::fromLocal8Bit("查找失败，请检查id格式是否正确"));
+        return;
+    }
+    if(values.size()==0)
+    {
+        QMessageBox:: critical(this,QString::fromLocal8Bit("查找失败"),
+            QString::fromLocal8Bit("没有找到对应数据"));
+        return;
+    }
+    
+    
+    //读取打印模板文件
+    QFile file(":/config/print.html");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QMessageBox:: critical(this,QString::fromLocal8Bit("打印失败"),
+            QString::fromLocal8Bit("没有找到打印模板"));
+        return;
+    }
+    QTextStream stream(&file);
+    stream.setCodec(QTextCodec::codecForName("UTF-8"));
+    QString szPrintTemplate,line;
+    while(1) 
+    {
+        line = stream.readLine();
+        if(line.isNull())
+            break;
+        szPrintTemplate += line;
+    }    
+    
+//    //读取css文件 //css文件没有产生效果
+//    file.setFileName(":/config/print.css");
+//    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+//    {
+//        QMessageBox:: critical(this,QString::fromLocal8Bit("打印失败"),
+//            QString::fromLocal8Bit("没有找到打印模板"));
+//        return;
+//    }
+//    stream.setDevice(&file);
+//    stream.setCodec(QTextCodec::codecForName("UTF-8"));
+//    QString szCss;
+//    while(1) 
+//    {
+//        line = stream.readLine();
+//        if(line.isNull())
+//            break;
+//        szCss += line;
+//    }  
+    
+    
+    //填充数据
+
+    QDateTime now = QDateTime::currentDateTime();
+    QString nowstr = now.toString("yyyy-MM-dd hh:mm:ss");
+    szPrintTemplate = szPrintTemplate.arg(values[0].value(0)).arg(nowstr);
+    for(int i=1;i<values[0].size();i++)
+    {
+        if(i==4)
+            szPrintTemplate = szPrintTemplate.arg(((QString)values[0].value(i)).split(' ')[0]);
+        else    
+            szPrintTemplate = szPrintTemplate.arg(values[0].value(i));
+    }
+    //打印
+    QTextDocument textDocument;
+    textDocument.setHtml(szPrintTemplate);
+    //textDocument.setDefaultStyleSheet(szCss);
+    textDocument.print(printer);
 }
 
 

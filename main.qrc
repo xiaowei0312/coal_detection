@@ -10,5 +10,7 @@
         <file>images/pagetail.png</file>
         <file>images/pageup.png</file>
         <file>config/config.xml</file>
+        <file>config/print.html</file>
+        <file>config/print.css</file>
     </qresource>
 </RCC>

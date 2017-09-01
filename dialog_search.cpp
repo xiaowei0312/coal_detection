@@ -19,7 +19,7 @@ SearchDialog::SearchDialog(QWidget *parent) :
     m_nSearchFlag = 0;
     m_nCurrentPage = 1;
     m_nMaxPage = 1;
-    m_nCountPerPage = 3;
+    m_nCountPerPage = 15;
     setBtnsStatus();
     
     connect(ui->m_pSearchLineEdit,SIGNAL(textChanged(const QString &)),this,SLOT(editTextChanged(const QString &)));

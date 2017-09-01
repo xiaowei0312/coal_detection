@@ -26,7 +26,7 @@ private:
     bool needSave;
     bool isMarked;
     QList<QLineEdit*> editList1,editList2;
-    QStringList colNameList,colValList;
+    QStringList colNameList,colValList,colNameList_print;
     QList<DataDependency*> dataDepList;
     
 private:
@@ -56,6 +56,7 @@ private slots:
     void edit_text_changed(const QString &text);
     void edit_text_changed_mapper(int i);
     void searchkey_text_changed(const QString &text);
+    void printPreview(QPrinter *printer);
 public slots:
     bool eventFilter(QObject *,QEvent *); 
 };
